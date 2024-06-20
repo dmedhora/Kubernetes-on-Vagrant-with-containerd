@@ -1,0 +1,46 @@
+if the specified ip in vagrant is on same network as host or bridge network, then change it.
+error is:
+The specified host network collides with a non-hostonly network!
+This will cause your specified IP to be inaccessible. Please change
+the IP or name of your host only network so that it no longer matches that of
+a bridged or non-hostonly network.
+
+Bridged Network Address: '192.168.1.0'
+Host-only Network 'wlp3s0': '192.168.1.0'
+
+Changed it to 192.168.2.101 and it worked:
+Vagrantfile entry:     master.vm.network 'private_network', ip: "192.168.2.101"
+============
+
+when doing kubeadm config images pull
+you should see:
+[root@k8s-master ~]# kubeadm config images pull
+[config/images] Pulled registry.k8s.io/kube-apiserver:v1.30.2
+[config/images] Pulled registry.k8s.io/kube-controller-manager:v1.30.2
+[config/images] Pulled registry.k8s.io/kube-scheduler:v1.30.2
+[config/images] Pulled registry.k8s.io/kube-proxy:v1.30.2
+[config/images] Pulled registry.k8s.io/coredns/coredns:v1.11.1
+[config/images] Pulled registry.k8s.io/pause:3.9
+[config/images] Pulled registry.k8s.io/etcd:3.5.12-0
+[root@k8s-master ~]# 
+==================
+
+if during kubeadm init there is a problem with health checks of api-server or kubelet, then kudeadm reset and then try the kubeadm init again.
+for e.g if the api-server-address IP is wrong, it will fail
+=============
+
+if you edit your Vagrantfile and make changes to it while the provisioning is going on, you may get an error like:
+Your VM has become "inaccessible." Unfortunately, this is a critical error
+with VirtualBox that Vagrant can not cleanly recover from. Please open VirtualBox
+and clear out your inaccessible virtual machines or find a way to fix
+them.
+If the error recurs, remove the entire vagrant installation and add a new centos/7 box and restart Vagrant
+also check /root/.config/VirtualBox.xml-prev. It may need to be copied over onto the original xml.
+===========
+
+If you have more than 1 node ( the default! ) then to get status info or the ability to ssh into the node
+you need to either have an env variable set: export NODES=2 or run 
+NODES=2 vagrant ssh node-2
+or
+NODES=2 vagrant status
+See: https://github.com/hashicorp/vagrant/issues/10369
