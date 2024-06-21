@@ -1,1 +1,1 @@
-Kubernetes on Vagrant ( Linux ) using containerd as CRI
+Kubernetes hosted on Vagrant using containerd as CRI
