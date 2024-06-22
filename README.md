@@ -29,21 +29,11 @@ k8s worker node name(s):  node-1, node-2,...
 
 When specifying the number of worker nodes, you must put the number (If >1) outside the Vagrantfile
 
-Why? See: See: https://github.com/hashicorp/vagrant/issues/10369
+**Why?** See: See: https://github.com/hashicorp/vagrant/issues/10369
 
-  
-
-**Usage**
-
-  
-
-DEFAULT NUMBER of kubernetes NODES to provision (aside from the master node) = 1 (one)
-
-  
+The default number of kubernetes NODES to provision will be (aside from the master node) = 1 (one) 
 
 If you have just 1 worker node to provision, then you don't need to specify the NODES variable below.
-
-  
 
 But For more nodes there are 2 options:
 
@@ -51,6 +41,7 @@ But For more nodes there are 2 options:
 You can export it in .bashrc once only before running this script ( Simplest approach )
 
 For example if you want 2 workers aside from the master,
+**Usage**
 
 \# **export NODES=2**
 
@@ -67,7 +58,6 @@ For example:
 run:
 
 **\# NODES=\<n\> vagrant --masterIP=\<IP of master control plane node\> --podnetwork=\<IP range of pod network\> up --provision**
-
 
 (Note that in this case you must prefix all related Vagrant commands with the variable as well)
 
