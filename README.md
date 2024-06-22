@@ -20,29 +20,33 @@ without needing the change the Vagrantfile. Instead, the master (control-plane/a
 of worker/minion nodes can all be put directly into the command line to bring it all up and running in a few minutes.
 
   
+***Host Names***
 
-k8s master node name:  k8s-master
+k8s master node name:     k8s-master
 
 k8s worker node name(s):  node-1, node-2,...
 
   
 
-When specifying the number of worker nodes, you must put the number (If >1) outside the Vagrantfile
+ 
 
-**Why?** See: See: https://github.com/hashicorp/vagrant/issues/10369
+**Usage Notes**
 
-The default number of kubernetes nodes to provision will be (aside from the master node) = 1 (one) 
+When specifying the number of worker nodes, you must put the number (If >1) outside of the Vagrantfile
 
+***Why?*** See: See: https://github.com/hashicorp/vagrant/issues/10369
+
+The default number of kubernetes nodes to provision will be (aside from the master node) = 1 (one)
 If you have just 1 worker node to provision, then you don't need to specify the NODES variable below.
 
-But For more nodes there are 2 options:
+But for more nodes there are **2** options:
 
-(1) The environment variable nodes must be set if you want more than 1 node
+***1) Exporting an environment variable*** 
+
+An env variable containing the node count must be set if you want more than 1 node.
 You can export it in .bashrc once only before running this script ( Simplest approach )
 
 For example if you want 2 workers aside from the master,
-
-**Usage**
 
 \# **export NODES=2**
 
@@ -51,13 +55,14 @@ Then run:
 **\# vagrant --masterIP=\<IP of master control plane node\> --podnetwork=\<IP range of pod network\> up --provision**
 
   
-(2) If you don't want to set this variable, or if you need more nodes that specified in your exported variable, 
+***2) Or, Prefixing the env variable to vagrant*** 
+
+If you don't want to set this variable, or if you need more nodes that specified in your exported variable, 
 then you can prefix the var before -every- vagrant command that involves >1 node,
 
 For example:
 
 run:
-
 **\# NODES=\<n\> vagrant --masterIP=\<IP of master control plane node\> --podnetwork=\<IP range of pod network\> up --provision**
 
 (Note that in this case you must prefix all related Vagrant commands with the variable as well)
@@ -70,6 +75,6 @@ OR
 
 You DON'T need to prefix the variable if the number of nodes = 1 !
 
-Note: First time runs need the --provision flag above. Subsequent runs can omit this.
+
 
 > Written with [StackEdit](https://stackedit.io/).
