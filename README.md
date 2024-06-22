@@ -57,7 +57,7 @@ For example if you want 2 workers aside from the master,
 
 Then run:
 
-**\# vagrant --masterIP=<IP of master control plane node> --podnetwork=<IP range of pod network> up --provision**
+**\# vagrant --masterIP=\<IP of master control plane node\> --podnetwork=\<IP range of pod network\> up --provision**
 
   
 
