@@ -67,7 +67,7 @@ For example:
 
 run:
 
-**\# NODES=<n> vagrant --masterIP=<IP of master control plane node> --podnetwork=<IP range of pod network> up --provision**
+**\# NODES=<n> vagrant --masterIP=\<IP of master control plane node\> --podnetwork=\<IP range of pod network\> up --provision**
 
   
 
