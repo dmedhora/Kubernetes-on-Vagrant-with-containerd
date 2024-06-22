@@ -1,5 +1,5 @@
 
-**Install and run a complete multi-node Kubernetes cluster using containerd instead of Docker on Vagrant.**
+**Install and run a complete multi-node Kubernetes cluster using Containerd (not Docker) on Vagrant.**
 
   
 
