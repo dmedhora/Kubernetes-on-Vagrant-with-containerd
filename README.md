@@ -48,7 +48,6 @@ If you have just 1 worker node to provision, then you don't need to specify the 
 But For more nodes there are 2 options:
 
 (1) The environment variable NODES must be set if you want more than 1 node
-
 You can export it in .bashrc once only before running this script ( Simplest approach )
 
 For example if you want 2 workers aside from the master,
@@ -60,16 +59,15 @@ Then run:
 **\# vagrant --masterIP=\<IP of master control plane node\> --podnetwork=\<IP range of pod network\> up --provision**
 
   
-
-(2) If you don't want to set this variable, you can prefix the var before -every- vagrant command that involves >1 node,
+(2) If you don't want to set this variable, or if you need more nodes that specified in your exported variable, 
+then you can prefix the var before -every- vagrant command that involves >1 node,
 
 For example:
 
 run:
 
-**\# NODES=<n> vagrant --masterIP=\<IP of master control plane node\> --podnetwork=\<IP range of pod network\> up --provision**
+**\# NODES=\<n\> vagrant --masterIP=\<IP of master control plane node\> --podnetwork=\<IP range of pod network\> up --provision**
 
-  
 
 (Note that in this case you must prefix all related Vagrant commands with the variable as well)
 
@@ -80,8 +78,6 @@ OR
 **\# NODES=2 vagrant ssh node-2**
 
 You DON'T need to prefix the variable if the number of nodes = 1 !
-
-  
 
 Note: First time runs need the --provision flag above. Subsequent runs can omit this.
 
