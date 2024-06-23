@@ -1,19 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-#=> Note: First time run needs the --provision flag below. Subsequent runs can omit this.
+#   Note: First time run needs the --provision flag below. Subsequent runs can omit this.
 #
-#=> VAGRANT DEFAULT NUMBER of kubernetes NODES to provision (aside from the master node) = 1 (one)
-#=> For more nodes there are 2 options:
+#   VAGRANT DEFAULT NUMBER of kubernetes NODES to provision (aside from the master node) = 1 (one)
+#   For more nodes there are 2 options:
 # 	1=> The environment variable NODES must be set if you want more than 1 node
 # 	    You can export it in .bashrc once only before running this script ( Simplest approach )
 # 	2=> OR you can prefix the var before -every- vagrant command that involves >1 node, like below:
 #
 # 	NODES=<n> vagrant \
 #	--masterIP=<IP of master node / control-plane hosting the api-server>
-#	--podnetwork=<IP range of pod network> \
-#	up
-#	--provision
+#	--podnetwork=<IP range of pod network> 	up --provision
 # OR
 # 	NODES=2 vagrant status
 # OR
