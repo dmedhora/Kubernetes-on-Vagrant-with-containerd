@@ -46,7 +46,7 @@ opts.each do |opt, arg|
       masterIP=arg
       nodeIPnet=arg[0...arg.rindex('.')]
       nodeIPip=arg.split('.')[3].to_i
-      nodeIPip=nodeIPip+=1
+      nodeIPip+=1
       nodeIP=("#{nodeIPnet}"".""#{nodeIPip}")
 
     when '--podnetwork'
@@ -84,7 +84,7 @@ Vagrant.configure('2') do |config|
       node.vm.box = 'centos/7'
       node.vm.hostname = "node-#{n}"
       node.vm.network 'private_network', ip: nodeIP
-      nodeIPip=nodeIPip+=1
+      nodeIPip+=1
       nodeIP=("#{nodeIPnet}"".""#{nodeIPip}")
       node.vm.provider 'virtualbox' do |vb|
         vb.memory = '1024'
