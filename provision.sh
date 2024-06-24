@@ -30,7 +30,7 @@ else
 ECHO Starting provisioning of the worker node: `hostname`
 fi
 
-ECHO Wait while updating system. This may take upto 2m0s...
+ECHO Wait while updating system. This may take upto 2+ minutes...
 yum update -y -q
 
 ECHO Setting up docker repo for installing containerd...
@@ -94,17 +94,19 @@ then
   ECHO Resetting kubeadm if needed...
   [ -d /etc/kubernetes/manifests -a -s /etc/kubernetes/manifests/kube-apiserver.yaml ] && kubeadm reset -f
   ECHO Starting kubeadm...
-  kubeadm init --apiserver-advertise-address $MASTER_IP --pod-network-cidr $POD_NETWORK
+  kubeadm init --apiserver-advertise-address $MASTER_IP --pod-network-cidr $POD_NETWORK 
   if [ $? -eq 0 ]
   then
       if [ -f /etc/kubernetes/admin.conf ]
       then
 	grep 'export KUBECONFIG' /root/.bashrc
 	[ $? -ne 0 ] && echo export KUBECONFIG=/etc/kubernetes/admin.conf >>/root/.bashrc
+	export KUBECONFIG=/etc/kubernetes/admin.conf
 	ECHO "========================================================="
 	ECHO Note the kudeadm join command above! Use it to join worker nodes.
 	ECHO "=========================================================\n"
 	ECHO Now installing weavenet: A CNI based Pod network Addon...
+	sleep 5
 	kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 	if [ $? -eq 0 ]
 	then
